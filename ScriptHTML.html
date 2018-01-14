@@ -1,0 +1,359 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Документ без названия</title>
+	</head>
+
+	<body>
+		<p>
+			<h2> Задача один: </h2> <br>
+			Напишите функцию создания генератора <code> sequence (start, step)</code>. Она при вызове возвращает другую функцю генератор,
+			которая при каждом вызове дает число на 1 больше, и так до бесконечности. Начальное число, с которого начинать отсчет, и шаг,
+			задается при создании генератора. Шаг можно не указывать, тогда он будет равен одному. Начальное значение по умолчанию равно 0.
+			Генераторов можно создать сколько угодно. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function sequence(start, step)
+{
+	start = start || 0;
+	step = step || 1;
+	var f = function() {
+		var oldStart = start;
+		start += step;
+		return oldStart}
+	return f;
+}
+var generator = sequence(10,3);
+var generator2 = sequence(7,1);
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+		<script> 
+			//JavaScript Function
+			function sequence(start, step)
+			{
+				start = start || 0;
+				step = step || 1;
+				var f = function() {
+					var oldStart = start;
+					start += step;
+					return oldStart}
+				return f;
+			}
+			
+			var generator = sequence(10,3);
+			var generator2 = sequence(7,1);
+			
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> generator() </td><td>"+ 10 +"</td><td>"+ generator() +"</td></tr>");
+			document.write("<tr><td> generator() </td><td>"+ 13 +"</td><td>"+ generator() +"</td></tr>");
+			document.write("<tr><td> generator2() </td><td>"+ 7 +"</td><td>"+ generator2() +"</td></tr>");
+			document.write("<tr><td> generator() </td><td>"+ 16 +"</td><td>"+ generator() +"</td></tr>");
+			document.write("<tr><td> generator2() </td><td>"+ 8 +"</td><td>"+ generator2() +"</td></tr>");
+			document.write("</table>");
+			//alert(generator());
+			//alert(generator());
+			
+			//alert(generator2());
+			
+			//alert(generator());
+			
+			//alert(generator2());
+			
+		</script>
+		<hr>
+		<p>
+			<h2> Задача два: </h2> <br>
+			Напишите функцию <code> take (gen, x) </code>,которая вызывает функцию <code> gen </code> заданное число раз и возвращает массив с результатами вызовов. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function sequence(start, step)
+{
+	start = start || 0;
+	step = step || 1;
+	var f = function() {
+		var oldStart = start;
+		start += step;
+		return oldStart}
+	return f;
+}
+				 
+function take (gen, x)
+{
+	var m = new Array(x);
+	for (i=0; i &lt; x; i++)
+		m[i]=gen();
+	return m;
+}
+				 	
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+			 <script>
+				 	function sequence(start, step)
+					{
+						start = start || 0;
+						step = step || 1;
+						var f = function() {
+							var oldStart = start;
+							start += step;
+							return oldStart}
+						return f;
+					}
+				 
+					function take (gen, x)
+				 	{
+						var m = new Array(x);
+						for (i=0; i<x; i++)
+							m[i]=gen();
+						return m;
+					}
+				 
+				 	var generator = sequence(0,2);
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> take(generator, 5) </td><td>"+ [0,2,4,6,8] +"</td><td>"+ take(generator, 5) +"</td></tr>");
+			document.write("</table>");
+				 	
+				 	
+			 </script>
+		<p>
+			<h2> Задача три: </h2> <br>
+			Напишите функцию <code> map (fn, array) </code>,которая принимает на вход функцию и массив, и обрабатывает каждый элемент массива этой функцией, возвращая новый массив. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function map(fn, array)
+{
+	var array1 = new Array(array.length);
+	for (var i = 0; i&lt;array.length; i++)
+		array1[i]=fn(array[i]);
+	return array1;
+}
+
+var f = function(x) {return x*x}
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+			 <script>
+				 	function map(fn, array)
+					{
+						var array1 = new Array(array.length);
+						for (var i = 0; i<array.length; i++)
+							array1[i]=fn(array[i]);
+						return array1;
+					}
+				 
+					
+				 	var f = function(x) {return x*x}
+				 	var array = map(f, [1,2,3,4]);
+					
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> map(f, [1,2,3,4]) </td><td>"+ [1,4,9,16] +"</td><td>"+ array +"</td></tr>");
+			document.write("</table>");
+				 	
+				 	
+			 </script>
+		<p>
+			 <h2> Задача четыре: </h2> <br>
+				Напишите функцию <code> fmap (a, gen) </code>,которая принимает на вход 2 функции a и gen, где gen - функция-генератор вроде той, что была в первом задании. fmap возвращает новую функцию-генератор, которая при каждом вызове берет следующее значение из gen и пропускает его через функцию a. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function sequence(start, step)
+{
+	start = start || 0;
+	step = step || 1;
+	var f = function() {
+		var oldStart = start;
+		start += step;
+		return oldStart}
+	return f;
+}
+				 
+function fmap(a, gen)
+{
+	var f = function()
+	{
+		return a(gen());
+	}
+	return f;	 
+}
+			
+var f = function(x) {return x*x}
+var generator = sequence(1,1);
+var func = fmap(f,generator);
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+			 <script>
+			function sequence(start, step)
+			{
+				start = start || 0;
+				step = step || 1;
+				var f = function() {
+					var oldStart = start;
+					start += step;
+					return oldStart}
+				return f;
+			}
+				 
+			function fmap(a, gen)
+			{
+				var f = function()
+				{
+					return a(gen());
+				}
+				return f;	 
+			}
+			
+			var f = function(x) {return x*x}
+			var generator = sequence(1,1);
+			var func = fmap(f,generator);
+		
+				 
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> func() </td><td>"+ 1 +"</td><td>"+ func() +"</td></tr>");
+			document.write("<tr><td> func() </td><td>"+ 4 +"</td><td>"+ func() +"</td></tr>");
+			document.write("<tr><td> func() </td><td>"+ 9 +"</td><td>"+ func() +"</td></tr>");
+			document.write("<tr><td> func() </td><td>"+ 16 +"</td><td>"+ func() +"</td></tr>");
+			document.write("</table>");
+				 	
+				 	
+			 </script>
+			 
+			 		<p>
+			 <h2> Задача четыре (дополнение): </h2> <br>
+				Напишите функцию <code> fmap (a, gen) </code>,которая принимает на вход 2 функции a и gen (две произвольные функции). fmap возвращает новую функцию, которая при каждом вызове берет значение из gen и пропускает его через функцию a. Аргументов в функции gen может быть любое количество. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function fmap(a, gen)
+{
+	var f = function(c,b)
+	{
+		if (arguments.length==0)
+		{
+			throw new Error("Функция вызвана без аргументов.");
+		}
+		var sum = arguments[0];
+		for (var i=0; i&lt;arguments.length-1; i++)
+			sum=gen(sum, arguments[i+1]);
+		return a(sum);
+	}
+	return f;	 
+}
+			
+var f = function(x) {return x*x};
+var add = function() {
+	
+		};
+			
+var func = fmap(f,add);
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+			 <script>
+				 
+			function fmap(a, gen)
+			{
+				var f = function()
+				{
+					if (arguments.length==0)
+					{
+						throw new Error("Функция вызвана без аргументов.");
+					}
+					var sum = arguments[0];
+					for (var i=0; i<arguments.length-1; i++)
+						sum=gen(sum, arguments[i+1]);
+					return a(sum);
+				}
+				return f;	 
+			}
+			
+			var f = function(x) {return x*x};
+			var add = function(a,b) {return a+b};
+			
+			var func = fmap(f,add);
+			
+
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> func(2,3,4,5,6) </td><td>"+ 400 +"</td><td>"+ func(2,3,4,5,6) +"</td></tr>");
+			document.write("<tr><td> func(5,7) </td><td>"+ 144 +"</td><td>"+ func(5,7) +"</td></tr>");
+			document.write("</table>");
+				 	
+				 	
+			 </script>
+			 
+			 		<p>
+			 <h2> Задача пять: </h2> <br>
+				Напишите функцию <code> partial(fn, a1, a2, ...) </code>,которая принимает на вход функцию и позволяет зафиксировать один или несколько аргументов функции. Аргументов в функции может быть любое количество. <hr>
+			<h3> Решение: </h3> 
+			<pre> <code> 
+function fmap(a, gen)
+{
+	var f = function(c,b)
+	{
+		if (arguments.length==0)
+		{
+			throw new Error("Функция вызвана без аргументов.");
+		}
+		var sum = arguments[0];
+		for (var i=0; i&lt;arguments.length-1; i++)
+			sum=gen(sum, arguments[i+1]);
+		return a(sum);
+	}
+	return f;	 
+}
+			
+var f = function(x) {return x*x};
+var add = function() {
+	
+		};
+			
+var func = fmap(f,add);
+			 </code> </pre>
+			 <hr>
+			 <h3> Результаты: </h3> 
+		</p>
+			 <script>
+				 
+			function fmap(a, gen)
+			{
+				var f = function()
+				{
+					if (arguments.length==0)
+					{
+						throw new Error("Функция вызвана без аргументов.");
+					}
+					var sum = arguments[0];
+					for (var i=0; i<arguments.length-1; i++)
+						sum=gen(sum, arguments[i+1]);
+					return a(sum);
+				}
+				return f;	 
+			}
+			
+			var f = function(x) {return x*x};
+			var add = function(a,b) {return a+b};
+			
+			var func = fmap(f,add);
+			
+
+			document.write("<table>");
+			document.write("<tr><td>Вызов функции:</td><td>Ожидаемые значения:</td><td>Полученные значения:</td></tr>");
+			document.write("<tr><td> func(2,3,4,5,6) </td><td>"+ 400 +"</td><td>"+ func(2,3,4,5,6) +"</td></tr>");
+			document.write("<tr><td> func(5,7) </td><td>"+ 144 +"</td><td>"+ func(5,7) +"</td></tr>");
+			document.write("</table>");
+				 	
+				 	
+			 </script>
+	</body>
+</html>
